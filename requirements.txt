@@ -1,2 +1,0 @@
-# DEPRECATED: This project has migrated to a Node.js stack for Vercel Serverless hosting.
-# Please refer to package.json for project dependencies.
