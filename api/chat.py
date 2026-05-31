@@ -3,7 +3,7 @@ import json
 import re
 import math
 import urllib.request
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify
 import google.generativeai as genai
 
 app = Flask(__name__)
@@ -251,14 +251,6 @@ def cron_ingest():
             "error": "Failed to trigger Vercel Deploy Hook rebuild.",
             "details": str(e)
         }), 500
-# Serve static files from the public directory
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve_static(path):
-    if not path or path == '/':
-        path = 'index.html'
-    public_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../public'))
-    return send_from_directory(public_dir, path)
 
 if __name__ == '__main__':
     app.run(port=3000)
