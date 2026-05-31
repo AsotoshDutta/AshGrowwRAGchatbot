@@ -2,6 +2,7 @@ import os
 import json
 import re
 import math
+import urllib.request
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 
@@ -33,9 +34,6 @@ URL_WHITELIST = [
 # PII regex patterns
 PAN_PATTERN = re.compile(r'[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}')
 AADHAAR_PATTERN = re.compile(r'[2-9]{1}[0-9]{3}\s?[0-9]{4}\s?[0-9]{4}')
-PHONE_PATTERN = re.compile(r'(?:\+91|0)?[6-9]\d{9}')
-EMAIL_PATTERN = re.compile(r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+')
-OTP_PATTERN = re.compile(r'\b\d{4,6}\b')
 
 def detect_pii(text):
     if PAN_PATTERN.search(text):
@@ -86,6 +84,7 @@ def truncate_to_three_sentences(text):
         return text
     return ''.join(sentences[:3]).strip()
 
+# Chat route
 @app.route('/api/chat', methods=['POST'])
 @app.route('/', methods=['POST'])
 def chat():
@@ -219,6 +218,39 @@ Follow these rules for factual answers:
         "lastUpdated": result_obj.get("lastUpdated", "May 2026"),
         "isRefusal": result_obj.get("isRefusal", False)
     }), 200
+
+# Cron-ingest route
+@app.route('/api/cron-ingest', methods=['GET', 'POST'])
+def cron_ingest():
+    auth_header = request.headers.get('Authorization', '')
+    cron_secret = os.environ.get('CRON_SECRET')
+
+    if cron_secret and auth_header != f"Bearer {cron_secret}":
+        return jsonify({"error": "Unauthorized. Invalid Cron Secret."}), 401
+
+    deploy_hook_url = os.environ.get('VERCEL_DEPLOY_HOOK_URL')
+    if not deploy_hook_url:
+        print("[CRON] VERCEL_DEPLOY_HOOK_URL environment variable is missing.")
+        return jsonify({"error": "VERCEL_DEPLOY_HOOK_URL environment variable is not configured."}), 500
+
+    try:
+        print("[CRON] Triggering rebuild via Vercel Deploy Hook...")
+        req = urllib.request.Request(deploy_hook_url, method='POST')
+        with urllib.request.urlopen(req) as response:
+            res_data = response.read().decode('utf-8')
+            data = json.loads(res_data)
+            print(f"[CRON] Deploy Hook triggered successfully. Job ID: {data.get('job', {}).get('id')}")
+            return jsonify({
+                "success": True,
+                "message": "Daily rebuild and ingest pipeline triggered successfully.",
+                "jobId": data.get('job', {}).get('id')
+            }), 200
+    except Exception as e:
+        print(f"[CRON] Error triggering Deploy Hook: {e}")
+        return jsonify({
+            "error": "Failed to trigger Vercel Deploy Hook rebuild.",
+            "details": str(e)
+        }), 500
 
 if __name__ == '__main__':
     app.run(port=3000)
