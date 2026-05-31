@@ -1,0 +1,5 @@
+SEBI Mutual Fund Categorization Guidelines and Riskometer FAQ.
+SEBI guidelines specify the classification of mutual funds into 5 broad groups: Equity, Debt, Hybrid, Solution-Oriented, and Other schemes.
+- Riskometer: The Riskometer must have six risk levels: Low, Low to Moderate, Moderate, Moderately High, High, and Very High. It must be evaluated monthly based on portfolio characteristics.
+- ELSS: Equity Linked Savings Scheme must invest at least 80% in equities and carry a mandatory 3-year lock-in period.
+Last updated from sources: January 2021.

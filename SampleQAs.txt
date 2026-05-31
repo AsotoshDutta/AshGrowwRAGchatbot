@@ -1,0 +1,83 @@
+Sample Q&As: Mutual Fund FAQ Assistant (Facts-Only Q&A)
+
+Below are 8 sample queries showing how the FAQ Assistant processes factual requests, intercepts personal information (PII), and politely refuses investment advice.
+
+================================================================================
+Query 1: Who is the fund manager of SBI Bluechip Fund and what is their tenure?
+Category: Factual (Fund Management)
+--------------------------------------------------------------------------------
+Answer: Sohini Andani has been managing the SBI Bluechip Fund since September 2010. She has over 13 years of tenure on this fund and 25+ years of experience in financial services.
+Citation Link: https://www.sbimf.com/downloads/sid/SBI-Bluechip-Fund-SID.pdf
+Source Details: SBI Bluechip Fund Scheme Information Document (SID)
+Last Updated: May 2026
+================================================================================
+
+================================================================================
+Query 2: What is the exit load of the SBI Small Cap Fund?
+Category: Factual (Exit Load Rules)
+--------------------------------------------------------------------------------
+Answer: The SBI Small Cap Fund charges an exit load of 1.00% if units are redeemed or switched out within 1 year (365 days) from the date of allotment. Nil exit load applies thereafter.
+Citation Link: https://www.sbimf.com/en-us/equity-schemes/sbi-small-cap-fund
+Source Details: SBI Small Cap Fund Scheme Page
+Last Updated: May 2026
+================================================================================
+
+================================================================================
+Query 3: What are the expense ratios of the Regular and Direct plans for SBI Contra Fund?
+Category: Factual (Expense Ratio)
+--------------------------------------------------------------------------------
+Answer: The Total Expense Ratio (TER) for the SBI Contra Fund is 1.61% for the Regular Plan and 0.62% for the Direct Plan.
+Citation Link: https://www.sbimf.com/en-us/equity-schemes/sbi-contra-fund
+Source Details: SBI Contra Fund Scheme Page
+Last Updated: May 2026
+================================================================================
+
+================================================================================
+Query 4: What is the lock-in period for SBI Long Term Equity Fund?
+Category: Factual (ELSS Lock-in)
+--------------------------------------------------------------------------------
+Answer: The SBI Long Term Equity Fund has a mandatory 3-year lock-in period from the date of unit allotment. No withdrawals are permitted before the completion of 3 years.
+Citation Link: https://www.sbimf.com/en-us/equity-schemes/sbi-long-term-equity-fund
+Source Details: SBI Long Term Equity Fund (ELSS) Scheme Page
+Last Updated: May 2026
+================================================================================
+
+================================================================================
+Query 5: How can I download my mutual fund account statement?
+Category: Factual (Download Guides)
+--------------------------------------------------------------------------------
+Answer: To download your account statement, visit the official SBI Mutual Fund portal, navigate to the 'Quick Links' section, select 'Statement of Account', and enter your registered Email ID, PAN, or Folio Number. Verify using the OTP sent to your registered mobile number or email to download the PDF.
+Citation Link: https://www.sbimf.com/en-us/quick-links/investor-education
+Source Details: SBI AMC Investor Education & Statement Help Page
+Last Updated: May 2026
+================================================================================
+
+================================================================================
+Query 6: What is the capital gains tax rate for debt mutual funds?
+Category: Factual (Taxation)
+--------------------------------------------------------------------------------
+Answer: For debt mutual fund investments made on or after April 1, 2023, all capital gains are treated as short-term and taxed at the investor's applicable income tax slab rate.
+Citation Link: https://www.sbimf.com/en-us/quick-links/tax-calculator
+Source Details: SBI AMC Capital Gains Taxation Guide
+Last Updated: May 2026
+================================================================================
+
+================================================================================
+Query 7: Should I invest in SBI Focused Equity Fund?
+Category: Non-Factual / Advisory (Advisory Refusal)
+--------------------------------------------------------------------------------
+Answer: I am a facts-only assistant and do not provide investment advice, qualitative opinions, or scheme recommendations. For personalized investment decisions, please consult a SEBI Registered Investment Advisor (RIA).
+Citation Link: https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=36
+Source Details: SEBI Directory of Registered Investment Advisors
+Last Updated: May 2026
+================================================================================
+
+================================================================================
+Query 8: My PAN number is ABCDE1234F. What is the risk classification of SBI Magnum Constant Maturity Fund?
+Category: PII Security Block (PII Refusal)
+--------------------------------------------------------------------------------
+Answer: For security and privacy reasons, please do not share personal details like PAN Numbers. I can only process factual inquiries regarding SBI Mutual Fund schemes.
+Citation Link: https://www.amfiindia.com/investor-corner/knowledge-center/what-are-mutual-funds-categories
+Source Details: AMFI Investor Corner
+Last Updated: May 2026
+================================================================================

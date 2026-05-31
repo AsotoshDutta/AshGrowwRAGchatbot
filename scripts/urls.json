@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "url": "https://www.sbimf.com/en-us/quick-links/investor-education",
+    "type": "html",
+    "category": "faq",
+    "title": "SBI AMC Investor Education & Statement Help"
+  },
+  {
+    "id": 2,
+    "url": "https://www.sbimf.com/en-us/quick-links/tax-calculator",
+    "type": "html",
+    "category": "tax",
+    "title": "SBI AMC Capital Gains Taxation Guide"
+  },
+  {
+    "id": 3,
+    "url": "https://www.sbimf.com/en-us/equity-schemes/sbi-bluechip-fund",
+    "type": "html",
+    "category": "scheme",
+    "title": "SBI Bluechip Fund Scheme Page"
+  },
+  {
+    "id": 4,
+    "url": "https://www.sbimf.com/en-us/equity-schemes/sbi-small-cap-fund",
+    "type": "html",
+    "category": "scheme",
+    "title": "SBI Small Cap Fund Scheme Page"
+  },
+  {
+    "id": 5,
+    "url": "https://www.sbimf.com/en-us/equity-schemes/sbi-focused-equity-fund",
+    "type": "html",
+    "category": "scheme",
+    "title": "SBI Focused Equity Fund Scheme Page"
+  },
+  {
+    "id": 6,
+    "url": "https://www.sbimf.com/en-us/equity-schemes/sbi-contra-fund",
+    "type": "html",
+    "category": "scheme",
+    "title": "SBI Contra Fund Scheme Page"
+  },
+  {
+    "id": 7,
+    "url": "https://www.sbimf.com/en-us/equity-schemes/sbi-long-term-equity-fund",
+    "type": "html",
+    "category": "scheme",
+    "title": "SBI Long Term Equity Fund (ELSS) Scheme Page"
+  },
+  {
+    "id": 8,
+    "url": "https://www.sbimf.com/en-us/debt-schemes/sbi-magnum-constant-maturity-fund",
+    "type": "html",
+    "category": "scheme",
+    "title": "SBI Magnum Constant Maturity Fund Scheme Page"
+  },
+  {
+    "id": 9,
+    "url": "https://www.sbimf.com/downloads/factsheets/Latest_Factsheet.pdf",
+    "type": "pdf",
+    "category": "factsheet",
+    "title": "SBI AMC Monthly Factsheet"
+  },
+  {
+    "id": 10,
+    "url": "https://www.sbimf.com/downloads/kim/SBI-Bluechip-Fund-KIM.pdf",
+    "type": "pdf",
+    "category": "kim",
+    "title": "SBI Bluechip Fund Key Information Memorandum"
+  },
+  {
+    "id": 11,
+    "url": "https://www.sbimf.com/downloads/kim/SBI-Small-Cap-Fund-KIM.pdf",
+    "type": "pdf",
+    "category": "kim",
+    "title": "SBI Small Cap Fund Key Information Memorandum"
+  },
+  {
+    "id": 12,
+    "url": "https://www.sbimf.com/downloads/sid/SBI-Bluechip-Fund-SID.pdf",
+    "type": "pdf",
+    "category": "sid",
+    "title": "SBI Bluechip Fund Scheme Information Document"
+  },
+  {
+    "id": 13,
+    "url": "https://www.sbimf.com/downloads/sid/SBI-Small-Cap-Fund-SID.pdf",
+    "type": "pdf",
+    "category": "sid",
+    "title": "SBI Small Cap Fund Scheme Information Document"
+  },
+  {
+    "id": 14,
+    "url": "https://www.sebi.gov.in/sebi_data/faqfiles/jan-2021/1611728286280.pdf",
+    "type": "pdf",
+    "category": "regulatory_faq",
+    "title": "SEBI Mutual Fund Categorization Guidelines FAQ"
+  },
+  {
+    "id": 15,
+    "url": "https://www.amfiindia.com/investor-corner/knowledge-center/what-are-mutual-funds-categories",
+    "type": "html",
+    "category": "regulatory_faq",
+    "title": "AMFI Mutual Fund Category Explanations"
+  },
+  {
+    "id": 16,
+    "url": "https://www.amfiindia.com/investor-corner/knowledge-center/expense-ratio.html",
+    "type": "html",
+    "category": "regulatory_faq",
+    "title": "AMFI Total Expense Ratio (TER) Rules"
+  },
+  {
+    "id": 17,
+    "url": "https://www.amfiindia.com/investor-corner/knowledge-center/exit-load.html",
+    "type": "html",
+    "category": "regulatory_faq",
+    "title": "AMFI Exit Load Rules"
+  },
+  {
+    "id": 18,
+    "url": "https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=36",
+    "type": "html",
+    "category": "advisors",
+    "title": "SEBI Directory of Registered Investment Advisors"
+  }
+]

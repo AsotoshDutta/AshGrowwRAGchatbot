@@ -1,0 +1,20 @@
+{
+  "name": "mutual-fund-faq-rag",
+  "version": "1.0.0",
+  "description": "Facts-Only Mutual Fund FAQ RAG Assistant hosted on Vercel",
+  "main": "api/chat.js",
+  "type": "module",
+  "scripts": {
+    "ingest": "node scripts/download.js && node scripts/process.js && node scripts/build_index.js",
+    "build": "npm run ingest",
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.11.3",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "pdf-parse": "^1.1.1",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Fund FAQ Assistant - Facts-Only Q&A</title>
+    <!-- Modern Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sticky Top Disclaimer Banner -->
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="logo-icon">▲</span>
+                <h1>Groww <span class="header-sub">FAQ Assistant</span></h1>
+            </div>
+            <div class="disclaimer-badge" id="disclaimer-banner">
+                <span class="warning-icon">⚠</span>
+                <span class="disclaimer-text">Facts-only. No investment advice.</span>
+            </div>
+            <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+                <span class="theme-icon">☀</span>
+            </button>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="chat-workspace">
+            <!-- Chat Logs Container -->
+            <section class="chat-messages-container" id="chat-messages">
+                <!-- Welcome Card -->
+                <div class="welcome-card" id="welcome-card">
+                    <div class="welcome-avatar">💬</div>
+                    <h2>Welcome to the Mutual Fund FAQ Assistant</h2>
+                    <p>I answer factual questions about <strong>SBI Mutual Fund</strong> schemes (expense ratios, exit loads, fund managers, lock-in periods, etc.) using official data sources.</p>
+                    
+                    <div class="example-section">
+                        <h3>Try asking one of these questions:</h3>
+                        <div class="example-chips">
+                            <button class="chip" data-query="Who is the fund manager of SBI Bluechip Fund and what is their tenure?">
+                                👤 Who is the fund manager of SBI Bluechip Fund?
+                            </button>
+                            <button class="chip" data-query="What is the exit load and expense ratio of the SBI Small Cap Fund?">
+                                💰 What is the exit load of SBI Small Cap?
+                            </button>
+                            <button class="chip" data-query="Is SBI Contra Fund a good investment for me?">
+                                📈 Should I invest in SBI Contra Fund?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Input Controls Area -->
+            <footer class="chat-controls">
+                <form class="input-form" id="chat-form">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        placeholder="Ask about expense ratios, exit loads, fund managers, statement downloads..." 
+                        autocomplete="off" 
+                        maxlength="500"
+                        required
+                    >
+                    <button type="submit" class="send-btn" id="send-button" aria-label="Send Message">
+                        <svg class="send-icon" viewBox="0 0 24 24">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </form>
+                <div class="compliance-footer">
+                    <span>🔒 Compliance Guard: Personal identifiers (PAN, Aadhaar, phone, OTPs) are filtered and never stored.</span>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
