@@ -23,9 +23,14 @@ if (!fs.existsSync(corpusPath)) {
 
 const apiKey = process.env.GEMINI_API_KEY;
 if (!apiKey || apiKey.includes('your_gemini_api_key_here')) {
-  console.error('[INDEX] ERROR: GEMINI_API_KEY is not set in the environment variables.');
-  console.error('[INDEX] Please set your API key in a .env file at the root directory.');
-  process.exit(1);
+  console.warn('[INDEX] WARNING: GEMINI_API_KEY is not set in the environment variables.');
+  if (fs.existsSync(outputPath)) {
+    console.warn('[INDEX] Pre-existing index found at ' + outputPath + '. Skipping index generation for build stability.');
+    process.exit(0);
+  } else {
+    console.error('[INDEX] ERROR: No pre-existing index found and GEMINI_API_KEY is missing. Build cannot proceed.');
+    process.exit(1);
+  }
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
