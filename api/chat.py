@@ -252,5 +252,14 @@ def cron_ingest():
             "details": str(e)
         }), 500
 
+@app.route('/', methods=['GET'])
+@app.route('/index.html', methods=['GET'])
+def index():
+    html_path = os.path.join(os.path.dirname(__file__), 'index.html')
+    if os.path.exists(html_path):
+        with open(html_path, 'r', encoding='utf-8') as f:
+            return f.read(), 200, {'Content-Type': 'text/html; charset=utf-8'}
+    return "Frontend index.html not found.", 404
+
 if __name__ == '__main__':
     app.run(port=3000)

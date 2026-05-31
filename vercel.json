@@ -1,9 +1,4 @@
 {
-  "rewrites": [
-    { "source": "/api/chat", "destination": "/api/chat.py" },
-    { "source": "/api/cron-ingest", "destination": "/api/chat.py" },
-    { "source": "/(.*)", "destination": "/public/$1" }
-  ],
   "crons": [
     {
       "path": "/api/cron-ingest",

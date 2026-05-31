@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "ingest": "node scripts/download.js && node scripts/process.js && node scripts/build_index.js",
-    "build": "npm run ingest",
+    "build": "npm run ingest && node scripts/merge_frontend.js",
     "dev": "vercel dev"
   },
   "dependencies": {
