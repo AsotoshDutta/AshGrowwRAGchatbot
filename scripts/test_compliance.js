@@ -38,7 +38,7 @@ async function runQuery(queryText) {
 
 function countSentences(text) {
   if (!text) return 0;
-  const sentences = text.match(/[^.!?]+[.!?]+(\s|$)/g) || [text];
+  const sentences = text.match(/(?:(?![.!?](?:\s|$)).)+(?:[.!?]+(?:\s|$)|$)/g) || [text];
   return sentences.filter(s => s.trim().length > 0).length;
 }
 

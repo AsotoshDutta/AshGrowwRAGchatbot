@@ -38,8 +38,8 @@ const embeddingModel = genAI.getGenerativeModel({ model: 'gemini-embedding-001' 
 
 // Simple sentence-based chunking with size target
 function chunkText(text, targetSize = 500, overlap = 100) {
-  // Split by sentences, keeping punctuation
-  const sentences = text.match(/[^.!?]+[.!?]+(\s|$)/g) || [text];
+  // Split by sentences, keeping punctuation and not breaking decimals
+  const sentences = text.match(/(?:(?![.!?](?:\s|$)).)+(?:[.!?]+(?:\s|$)|$)/g) || [text];
   const chunks = [];
   let currentChunk = '';
 

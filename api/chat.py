@@ -71,13 +71,13 @@ def retrieve_chunks(query_embedding, chunks, limit=3):
 def count_sentences(text):
     if not text:
         return 0
-    sentences = re.findall(r'[^.!?]+[.!?]+(?:\s|$)', text)
+    sentences = re.findall(r'(?:(?![.!?](?:\s|$)).)+(?:[.!?]+(?:\s|$)|$)', text)
     return len(sentences) if sentences else 1
 
 def truncate_to_three_sentences(text):
     if not text:
         return ''
-    sentences = re.findall(r'[^.!?]+[.!?]+(?:\s|$)', text)
+    sentences = re.findall(r'(?:(?![.!?](?:\s|$)).)+(?:[.!?]+(?:\s|$)|$)', text)
     if not sentences:
         return text
     if len(sentences) <= 3:
