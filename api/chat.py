@@ -260,6 +260,37 @@ def index():
         with open(html_path, 'r', encoding='utf-8') as f:
             return f.read(), 200, {'Content-Type': 'text/html; charset=utf-8'}
     return "Frontend index.html not found.", 404
+@app.route('/api/diagnose', methods=['GET'])
+def diagnose():
+    exists = os.path.exists(INDEX_PATH)
+    size = os.path.getsize(INDEX_PATH) if exists else 0
+    chunks_count = 0
+    error_msg = None
+    first_chunk_keys = []
+    
+    if exists:
+        try:
+            with open(INDEX_PATH, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                chunks_count = len(data)
+                if chunks_count > 0:
+                    first_chunk_keys = list(data[0].keys())
+        except Exception as e:
+            error_msg = str(e)
+            
+    return jsonify({
+        "index_path": INDEX_PATH,
+        "index_exists": exists,
+        "index_size": size,
+        "chunks_count": chunks_count,
+        "first_chunk_keys": first_chunk_keys,
+        "load_error": error_msg,
+        "cwd": os.getcwd(),
+        "files_in_cwd": os.listdir(os.getcwd()) if os.path.exists(os.getcwd()) else [],
+        "files_in_api": os.listdir(os.path.dirname(__file__)) if os.path.exists(os.path.dirname(__file__)) else [],
+        "gemini_api_key_set": os.environ.get('GEMINI_API_KEY') is not None,
+        "gemini_api_key_length": len(os.environ.get('GEMINI_API_KEY')) if os.environ.get('GEMINI_API_KEY') else 0
+    })
 
 if __name__ == '__main__':
     app.run(port=3000)
