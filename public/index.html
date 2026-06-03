@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InvestWise FAQ Assistant - Factual Mutual Fund RAG</title>
+    <title>Groww FAQ Assistant - Factual Mutual Fund RAG</title>
     <!-- Modern Premium Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
                     </svg>
                 </div>
                 <div class="logo-text">
-                    <span class="logo-title">InvestWise</span>
+                    <span class="logo-title">Groww</span>
                     <span class="logo-subtitle">Wealth Partner</span>
                 </div>
             </div>
@@ -59,25 +59,13 @@
         <!-- Main Workspace -->
         <main class="main-content">
             
-            <!-- Top Navigation / Search Header -->
+            <!-- Top Navigation Header -->
             <header class="top-nav">
-                <div class="search-area">
-                    <button class="back-btn" id="back-button-home" title="Back to Dashboard" aria-label="Back to Dashboard">
+                <div class="page-title-area">
+                    <button class="back-btn" id="back-button-home" title="Back to Welcome Page" aria-label="Back to Welcome Page">
                         <span>←</span>
                     </button>
-                    <form class="search-form" id="chat-form">
-                        <span class="search-icon-inside">🔍</span>
-                        <input 
-                            type="text" 
-                            id="user-input" 
-                            placeholder="Search stocks, mutual funds, gold..." 
-                            autocomplete="off" 
-                            maxlength="500"
-                            required
-                        >
-                        <!-- Hidden submit button required for app.js reference -->
-                        <button type="submit" id="send-button" style="display: none;"></button>
-                    </form>
+                    <span class="page-title">Explore / FAQ Assistant</span>
                 </div>
                 
                 <div class="header-actions">
@@ -103,193 +91,55 @@
                 <span class="disclaimer-text">Facts-only. No investment advice. Financial markets are subject to risk.</span>
             </div>
 
-            <!-- Content Area holding either Dashboard or Chat messages -->
-            <div class="content-body">
+            <!-- Chat workspace -->
+            <section class="chat-messages-container" id="chat-messages">
                 
-                <!-- Chat Container (Houses welcome-card as child for automatic app.js show/hide) -->
-                <section class="chat-messages-container" id="chat-messages">
+                <!-- Welcome Card (Original welcome content, styled in new theme) -->
+                <div class="welcome-card" id="welcome-card">
+                    <div class="welcome-avatar">💬</div>
+                    <h2>Welcome to the Mutual Fund FAQ Assistant</h2>
+                    <p>I answer factual questions about <strong>SBI Mutual Fund</strong> schemes (expense ratios, exit loads, fund managers, lock-in periods, etc.) using official data sources.</p>
                     
-                    <!-- Dashboard View (Configured as welcome-card so it integrates with existing app.js logic) -->
-                    <div class="welcome-card" id="welcome-card">
-                        
-                        <!-- Row 1: Portfolio Metrics & Quick Info -->
-                        <div class="dashboard-row-top">
-                            <div class="card total-portfolio-card">
-                                <div class="card-header-horizontal">
-                                    <span class="card-label">Total Portfolio Value</span>
-                                    <span class="pill-badge positive">+₹12,450.00 (1.45%)</span>
-                                </div>
-                                <div class="portfolio-value">₹24,82,190.54</div>
-                                <div class="metrics-row">
-                                    <div class="metric-col">
-                                        <span class="metric-label">1D RETURNS</span>
-                                        <span class="metric-value positive">+₹8,420</span>
-                                    </div>
-                                    <div class="metric-col">
-                                        <span class="metric-label">XIRR</span>
-                                        <span class="metric-value">18.4%</span>
-                                    </div>
-                                    <div class="metric-col">
-                                        <span class="metric-label">TOTAL PROFIT</span>
-                                        <span class="metric-value">₹4,12,040</span>
-                                    </div>
-                                </div>
-                                <div class="buttons-row">
-                                    <button class="btn btn-primary" id="btn-invest-more">
-                                        <span class="btn-icon">+</span> Invest More
-                                    </button>
-                                    <button class="btn btn-secondary">Withdraw</button>
-                                </div>
-                            </div>
-                            
-                            <div class="right-quick-cards">
-                                <div class="card quick-card available-invest-card">
-                                    <span class="card-label">Available to Invest</span>
-                                    <div class="quick-value">₹45,000.00</div>
-                                    <a href="#" class="action-link" id="add-money-trigger">Add Money →</a>
-                                </div>
-                                <div class="card quick-card recent-sip-card">
-                                    <span class="card-label">Recent SIP Status</span>
-                                    <div class="sip-status-row">
-                                        <span class="status-dot active"></span>
-                                        <span class="sip-fund-name">SBI Bluechip Fund</span>
-                                    </div>
-                                    <span class="sip-subtext">Next payment: 12th Oct • ₹5,000</span>
-                                </div>
-                            </div>
+                    <div class="example-section">
+                        <h3>Try asking one of these questions:</h3>
+                        <div class="example-chips">
+                            <button class="chip" data-query="Who is the fund manager of SBI Bluechip Fund and what is their tenure?">
+                                👤 Who is the fund manager of SBI Bluechip Fund?
+                            </button>
+                            <button class="chip" data-query="What is the exit load and expense ratio of the SBI Small Cap Fund?">
+                                💰 What is the exit load of SBI Small Cap?
+                            </button>
+                            <button class="chip" data-query="Is SBI Contra Fund a good investment for me?">
+                                📈 Should I invest in SBI Contra Fund?
+                            </button>
                         </div>
-
-                        <!-- Row 2: Market Trends chart -->
-                        <div class="card market-trends-card">
-                            <div class="trends-header">
-                                <div class="trends-title-group">
-                                    <h2 class="card-title">Market Trends</h2>
-                                    <div class="trends-tabs">
-                                        <button class="trend-tab active">NIFTY 50</button>
-                                        <button class="trend-tab">SENSEX</button>
-                                    </div>
-                                </div>
-                                <div class="period-tabs">
-                                    <button class="period-tab active">1D</button>
-                                    <button class="period-tab">5D</button>
-                                    <button class="period-tab">1M</button>
-                                    <button class="period-tab">1Y</button>
-                                </div>
-                            </div>
-                            
-                            <div class="trends-data-row">
-                                <div class="trends-price">25,127.95</div>
-                                <div class="trends-change positive">+152.40 (0.61%)</div>
-                            </div>
-                            
-                            <!-- Custom CSS Bar Chart -->
-                            <div class="chart-container">
-                                <div class="chart-bar" style="height: 38%;"></div>
-                                <div class="chart-bar" style="height: 45%;"></div>
-                                <div class="chart-bar" style="height: 42%;"></div>
-                                <div class="chart-bar" style="height: 55%;"></div>
-                                <div class="chart-bar" style="height: 48%;"></div>
-                                <div class="chart-bar" style="height: 65%;"></div>
-                                <div class="chart-bar" style="height: 60%;"></div>
-                                <div class="chart-bar" style="height: 72%;"></div>
-                                <div class="chart-bar" style="height: 70%;"></div>
-                                <div class="chart-bar" style="height: 85%;"></div>
-                                <div class="chart-bar" style="height: 80%;"></div>
-                                <div class="chart-bar" style="height: 92%;"></div>
-                                
-                                <div class="chart-time-labels">
-                                    <span>09:15</span>
-                                    <span>11:00</span>
-                                    <span>13:00</span>
-                                    <span>15:30</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Row 3: Popular Mutual Funds & Top Gainers Stocks -->
-                        <div class="dashboard-row-lists">
-                            <!-- Popular Mutual Funds -->
-                            <div class="card list-card">
-                                <div class="list-header">
-                                    <h3 class="list-title">Popular Mutual Funds</h3>
-                                    <a href="#" class="view-all-link">View All</a>
-                                </div>
-                                <div class="list-items">
-                                    <!-- Embedded example chips directly as interactive list items -->
-                                    <div class="list-item clickable-fund chip" data-query="What is the exit load of Quant Small Cap Fund?">
-                                        <div class="item-info">
-                                            <div class="item-avatar blue-avatar">Q</div>
-                                            <div class="item-details">
-                                                <span class="item-name">Quant Small Cap Fund</span>
-                                                <span class="item-sub">Equity • Very High Risk</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-metric">
-                                            <span class="metric-val positive">54.2%</span>
-                                            <span class="metric-sub">3Y Returns</span>
-                                        </div>
-                                    </div>
-                                    <div class="list-item clickable-fund chip" data-query="What is the expense ratio and fund manager of SBI Bluechip Fund?">
-                                        <div class="item-info">
-                                            <div class="item-avatar green-avatar">S</div>
-                                            <div class="item-details">
-                                                <span class="item-name">SBI Bluechip Direct-G</span>
-                                                <span class="item-sub">Equity • Moderate Risk</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-metric">
-                                            <span class="metric-val positive">22.8%</span>
-                                            <span class="metric-sub">3Y Returns</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Top Gainers Stocks -->
-                            <div class="card list-card">
-                                <div class="list-header">
-                                    <h3 class="list-title">Top Gainers Stocks</h3>
-                                    <a href="#" class="view-all-link">View All</a>
-                                </div>
-                                <div class="list-items">
-                                    <div class="list-item clickable-stock chip" data-query="Is Reliance Industries stock a good investment?">
-                                        <div class="item-info">
-                                            <div class="item-avatar grey-avatar">REL</div>
-                                            <div class="item-details">
-                                                <span class="item-name">Reliance Industries</span>
-                                                <span class="item-sub">₹2,945.10 • Large Cap</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-metric">
-                                            <span class="metric-val positive">+4.12%</span>
-                                            <span class="metric-sub">Today</span>
-                                        </div>
-                                    </div>
-                                    <div class="list-item clickable-stock chip" data-query="Who is the fund manager of SBI Contra Fund?">
-                                        <div class="item-info">
-                                            <div class="item-avatar grey-avatar">TCS</div>
-                                            <div class="item-details">
-                                                <span class="item-name">TCS</span>
-                                                <span class="item-sub">₹4,210.45 • Large Cap</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-metric">
-                                            <span class="metric-val positive">+3.85%</span>
-                                            <span class="metric-sub">Today</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </section>
-            </div>
+                </div>
 
-            <!-- Offline Compliance Footer -->
-            <footer class="compliance-footer">
-                <span>🔒 Compliance Guard: Personal identifiers (PAN, Aadhaar, phone, OTPs) are filtered and never stored.</span>
+            </section>
+
+            <!-- Bottom Chat Controls Area (Original buttons/features styled in new design) -->
+            <footer class="chat-controls">
+                <form class="input-form" id="chat-form">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        placeholder="Ask about expense ratios, exit loads, fund managers, statement downloads..." 
+                        autocomplete="off" 
+                        maxlength="500"
+                        required
+                    >
+                    <button type="submit" class="send-btn" id="send-button" aria-label="Send Message">
+                        <svg class="send-icon" viewBox="0 0 24 24">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </form>
+                <div class="compliance-footer">
+                    <span>🔒 Compliance Guard: Personal identifiers (PAN, Aadhaar, phone, OTPs) are filtered and never stored.</span>
+                </div>
             </footer>
+
         </main>
     </div>
 

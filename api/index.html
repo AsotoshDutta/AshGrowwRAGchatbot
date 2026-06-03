@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InvestWise FAQ Assistant - Factual Mutual Fund RAG</title>
+    <title>Groww FAQ Assistant - Factual Mutual Fund RAG</title>
     <!-- Modern Premium Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-/* InvestWise Premium Styling System */
+/* Groww FAQ Assistant - Core Styling System */
 
 :root {
     --primary-color: #00D09C;
@@ -185,12 +185,12 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow: hidden;
     position: relative;
     background: var(--bg-color);
 }
 
-/* TOP NAV */
+/* TOP HEADER */
 .top-nav {
     padding: 16px 32px;
     display: flex;
@@ -198,49 +198,19 @@ body {
     align-items: center;
     border-bottom: 1px solid var(--panel-border);
     background: var(--sidebar-bg);
-    position: sticky;
-    top: 0;
-    z-index: 9;
 }
 
-.search-area {
+.page-title-area {
     display: flex;
     align-items: center;
     gap: 12px;
-    flex: 1;
-    max-width: 500px;
 }
 
-.search-form {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.search-icon-inside {
-    position: absolute;
-    left: 16px;
+.page-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
     color: var(--text-secondary);
-    font-size: 14px;
-    pointer-events: none;
-}
-
-#user-input {
-    width: 100%;
-    background-color: var(--input-bg);
-    border: 1px solid var(--panel-border);
-    color: var(--text-primary);
-    padding: 12px 16px 12px 42px;
-    border-radius: 24px;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-#user-input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px var(--primary-glow);
 }
 
 /* BACK BUTTON */
@@ -248,15 +218,15 @@ body {
     background: none;
     border: 1px solid var(--panel-border);
     color: var(--text-primary);
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     cursor: pointer;
-    display: none; /* Controlled by JS showChatView / showDashboardView */
+    display: none; /* Controlled by JS show/hide */
     justify-content: center;
     align-items: center;
     transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     flex-shrink: 0;
 }
@@ -349,18 +319,11 @@ body {
     color: var(--warning-text);
 }
 
-/* BODY CONTENT HOLDER */
-.content-body {
-    flex: 1;
-    padding: 24px 32px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* CHAT MESSAGES PANEL */
+/* CHAT MESSAGES WINDOW */
 .chat-messages-container {
     flex: 1;
     overflow-y: auto;
+    padding: 24px 32px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -380,463 +343,79 @@ body {
     border-radius: 4px;
 }
 
-/* DASHBOARD GRID (Mapped as welcome-card) */
+/* WELCOME CARD (Original screen content, styled in new theme) */
 .welcome-card {
-    width: 100%;
-    margin: 0;
-    text-align: left;
-    background: none;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    animation: fadeInUp 0.6s ease-out;
-}
-
-/* CARDS STYLING */
-.card {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 32px;
+    border: 1px solid var(--panel-border);
     background: var(--panel-bg);
-    border: 1px solid var(--panel-border);
     border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 8px 24px var(--shadow-color);
-    transition: transform 0.2s, border-color 0.2s;
+    box-shadow: 0 8px 32px var(--shadow-color);
+    animation: fadeInUp 0.6s ease-out;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.card:hover {
-    border-color: rgba(0, 208, 156, 0.2);
+.welcome-avatar {
+    font-size: 40px;
+    margin-bottom: 16px;
+    animation: float 4s ease-in-out infinite;
 }
 
-/* Row 1: Portfolio layout */
-.dashboard-row-top {
-    display: grid;
-    grid-template-columns: 2.2fr 1fr;
-    gap: 24px;
-}
-
-.total-portfolio-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-header-horizontal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.welcome-card h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
     margin-bottom: 12px;
-}
-
-.card-label {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.pill-badge {
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-}
-
-.pill-badge.positive {
-    background: rgba(0, 208, 156, 0.1);
-    color: var(--primary-color);
-}
-
-.portfolio-value {
-    font-family: 'Outfit', sans-serif;
-    font-size: 34px;
-    font-weight: 700;
-    margin-bottom: 24px;
-}
-
-.metrics-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    border-top: 1px solid var(--panel-border);
-    padding-top: 16px;
-    margin-bottom: 24px;
-}
-
-.metric-col {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.metric-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-secondary);
-}
-
-.metric-value {
-    font-family: 'Outfit', sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.metric-value.positive, .trends-change.positive, .metric-val.positive {
-    color: var(--primary-color);
-}
-
-.buttons-row {
-    display: flex;
-    gap: 12px;
-}
-
-.btn {
-    padding: 10px 20px;
-    font-size: 13.5px;
-    font-weight: 600;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: #0C0D0E;
-    border: none;
-    box-shadow: 0 4px 12px var(--primary-glow);
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-.btn-secondary {
-    background: transparent;
     color: var(--text-primary);
-    border: 1px solid var(--panel-border);
 }
 
-.btn-secondary:hover {
-    background: var(--card-hover);
-    border-color: var(--text-primary);
-}
-
-.btn-icon {
-    font-weight: 700;
-    margin-right: 4px;
-}
-
-.right-quick-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.quick-card {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 18px 20px;
-}
-
-.quick-value {
-    font-family: 'Outfit', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 6px 0 8px 0;
-}
-
-.action-link {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.action-link:hover {
-    color: var(--primary-hover);
-    text-decoration: underline;
-}
-
-.sip-status-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin: 8px 0 4px 0;
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
-.status-dot.active {
-    background-color: var(--primary-color);
-    box-shadow: 0 0 6px var(--primary-color);
-}
-
-.sip-fund-name {
-    font-size: 15px;
-    font-weight: 600;
-    font-family: 'Outfit', sans-serif;
-}
-
-.sip-subtext {
-    font-size: 12px;
+.welcome-card p {
+    font-size: 14.5px;
     color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 24px;
 }
 
-/* Row 2: Market Trends Card */
-.market-trends-card {
+.example-section h3 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+
+.example-chips {
     display: flex;
     flex-direction: column;
-}
-
-.trends-header {
-    display: flex;
-    justify-content: space-between;
+    gap: 10px;
     align-items: center;
-    margin-bottom: 12px;
 }
 
-.trends-title-group {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.card-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.trends-tabs, .period-tabs {
-    display: flex;
+.chip {
     background: var(--bg-color);
     border: 1px solid var(--panel-border);
-    padding: 3px;
-    border-radius: 8px;
-}
-
-.trend-tab, .period-tab {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    padding: 6px 12px;
-    font-size: 11px;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.trend-tab.active, .period-tab.active {
-    background: var(--panel-bg);
     color: var(--text-primary);
-}
-
-.trends-data-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 24px;
-}
-
-.trends-price {
-    font-family: 'Outfit', sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-}
-
-.trends-change {
-    font-size: 13.5px;
-    font-weight: 600;
-}
-
-/* CSS BAR CHART */
-.chart-container {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    height: 120px;
-    border-bottom: 1px solid var(--panel-border);
-    padding-bottom: 10px;
-    position: relative;
-}
-
-.chart-bar {
-    width: 7%;
-    background: linear-gradient(180deg, rgba(0, 208, 156, 0.4) 0%, rgba(0, 208, 156, 0.05) 100%);
-    border-top: 2px solid var(--primary-color);
-    border-radius: 4px 4px 0 0;
-    min-height: 10px;
-    transition: height 1s ease-in-out, background 0.3s;
-}
-
-.chart-bar:hover {
-    background: linear-gradient(180deg, rgba(0, 208, 156, 0.7) 0%, rgba(0, 208, 156, 0.2) 100%);
-}
-
-.chart-time-labels {
-    position: absolute;
-    bottom: -22px;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: var(--text-secondary);
-}
-
-/* Row 3: Lists column */
-.dashboard-row-lists {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
-
-.list-card {
-    display: flex;
-    flex-direction: column;
-}
-
-.list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.list-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-}
-
-.view-all-link {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.view-all-link:hover {
-    color: var(--primary-hover);
-}
-
-.list-items {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 14px;
+    padding: 12px 16px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.01);
-    border: 1px solid var(--panel-border);
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     cursor: pointer;
-}
-
-/* Chip implementation for auto click listener */
-.list-item.chip {
-    text-align: left;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
     width: 100%;
-    max-width: 100%;
+    max-width: 480px;
+    text-align: left;
 }
 
-.list-item:hover {
+.chip:hover {
     transform: translateY(-2px);
     border-color: var(--primary-color);
     box-shadow: 0 4px 12px var(--primary-glow);
+    background-color: var(--panel-bg);
 }
 
-.item-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.item-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    flex-shrink: 0;
-}
-
-.blue-avatar {
-    background: rgba(33, 150, 243, 0.15);
-    color: #2196F3;
-}
-
-.green-avatar {
-    background: rgba(0, 208, 156, 0.15);
-    color: var(--primary-color);
-}
-
-.grey-avatar {
-    background: rgba(144, 164, 174, 0.15);
-    color: #ECEFF1;
-}
-
-.light-theme .grey-avatar {
-    background: rgba(98, 109, 122, 0.15);
-    color: #1A1D20;
-}
-
-.item-details {
-    display: flex;
-    flex-direction: column;
-}
-
-.item-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.item-sub {
-    font-size: 11px;
-    color: var(--text-secondary);
-    margin-top: 2px;
-}
-
-.item-metric {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.metric-val {
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.metric-sub {
-    font-size: 10px;
-    color: var(--text-secondary);
-    margin-top: 2px;
-}
-
-/* CHAT RESPONSE bubbles */
+/* CHAT MESSAGE BUBBLES */
 .message-wrapper {
     display: flex;
     flex-direction: column;
@@ -889,7 +468,7 @@ body {
     box-shadow: 0 8px 24px var(--shadow-color);
 }
 
-/* Citations inside bubbles */
+/* Citations & Footers inside bot bubbles */
 .citation-block {
     margin-top: 14px;
     padding-top: 12px;
@@ -923,7 +502,7 @@ body {
     margin-top: 2px;
 }
 
-/* Loading indicators */
+/* Typing Indicator Animation */
 .typing-indicator {
     display: flex;
     gap: 5px;
@@ -943,18 +522,82 @@ body {
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-/* COMPLIANCE FOOTER */
+/* INPUT FORM & CONTROLS */
+.chat-controls {
+    padding: 20px 32px 24px 32px;
+    border-top: 1px solid var(--panel-border);
+    background: var(--sidebar-bg);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.input-form {
+    display: flex;
+    gap: 12px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#user-input {
+    flex: 1;
+    background-color: var(--input-bg);
+    border: 1px solid var(--panel-border);
+    color: var(--text-primary);
+    padding: 14px 20px;
+    border-radius: 24px;
+    font-size: 14.5px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+#user-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-glow);
+}
+
+.send-btn {
+    background-color: var(--primary-color);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px var(--primary-glow);
+    flex-shrink: 0;
+}
+
+.send-btn:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.04);
+}
+
+.send-btn:active {
+    transform: scale(0.96);
+}
+
+.send-icon {
+    width: 18px;
+    height: 18px;
+    fill: #0C0D0E;
+}
+
 .compliance-footer {
     text-align: center;
     font-size: 11px;
     color: var(--text-secondary);
-    padding: 16px 24px;
-    border-top: 1px solid var(--panel-border);
-    background: var(--sidebar-bg);
-    margin-top: auto;
+    margin-top: 12px;
 }
 
 /* KEYFRAMES & ANIMATIONS */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
 @keyframes typingBounce {
     0%, 80%, 100% { transform: scale(0); }
     40% { transform: scale(1); }
@@ -993,21 +636,7 @@ body {
     }
 }
 
-/* RESPONSIVENESS */
-@media (max-width: 900px) {
-    .dashboard-row-top {
-        grid-template-columns: 1fr;
-    }
-    
-    .right-quick-cards {
-        flex-direction: row;
-    }
-    
-    .quick-card {
-        flex: 1;
-    }
-}
-
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 768px) {
     .app-container {
         flex-direction: column;
@@ -1059,16 +688,17 @@ body {
         margin: 12px 16px 0 16px;
     }
     
-    .content-body {
+    .chat-messages-container {
         padding: 16px;
     }
     
-    .dashboard-row-lists {
-        grid-template-columns: 1fr;
+    .welcome-card {
+        margin: 20px auto;
+        padding: 24px 16px;
     }
     
-    .right-quick-cards {
-        flex-direction: column;
+    .chat-controls {
+        padding: 16px;
     }
     
     .message-wrapper {
@@ -1091,7 +721,7 @@ body {
                     </svg>
                 </div>
                 <div class="logo-text">
-                    <span class="logo-title">InvestWise</span>
+                    <span class="logo-title">Groww</span>
                     <span class="logo-subtitle">Wealth Partner</span>
                 </div>
             </div>
@@ -1127,25 +757,13 @@ body {
         <!-- Main Workspace -->
         <main class="main-content">
             
-            <!-- Top Navigation / Search Header -->
+            <!-- Top Navigation Header -->
             <header class="top-nav">
-                <div class="search-area">
-                    <button class="back-btn" id="back-button-home" title="Back to Dashboard" aria-label="Back to Dashboard">
+                <div class="page-title-area">
+                    <button class="back-btn" id="back-button-home" title="Back to Welcome Page" aria-label="Back to Welcome Page">
                         <span>←</span>
                     </button>
-                    <form class="search-form" id="chat-form">
-                        <span class="search-icon-inside">🔍</span>
-                        <input 
-                            type="text" 
-                            id="user-input" 
-                            placeholder="Search stocks, mutual funds, gold..." 
-                            autocomplete="off" 
-                            maxlength="500"
-                            required
-                        >
-                        <!-- Hidden submit button required for app.js reference -->
-                        <button type="submit" id="send-button" style="display: none;"></button>
-                    </form>
+                    <span class="page-title">Explore / FAQ Assistant</span>
                 </div>
                 
                 <div class="header-actions">
@@ -1171,193 +789,55 @@ body {
                 <span class="disclaimer-text">Facts-only. No investment advice. Financial markets are subject to risk.</span>
             </div>
 
-            <!-- Content Area holding either Dashboard or Chat messages -->
-            <div class="content-body">
+            <!-- Chat workspace -->
+            <section class="chat-messages-container" id="chat-messages">
                 
-                <!-- Chat Container (Houses welcome-card as child for automatic app.js show/hide) -->
-                <section class="chat-messages-container" id="chat-messages">
+                <!-- Welcome Card (Original welcome content, styled in new theme) -->
+                <div class="welcome-card" id="welcome-card">
+                    <div class="welcome-avatar">💬</div>
+                    <h2>Welcome to the Mutual Fund FAQ Assistant</h2>
+                    <p>I answer factual questions about <strong>SBI Mutual Fund</strong> schemes (expense ratios, exit loads, fund managers, lock-in periods, etc.) using official data sources.</p>
                     
-                    <!-- Dashboard View (Configured as welcome-card so it integrates with existing app.js logic) -->
-                    <div class="welcome-card" id="welcome-card">
-                        
-                        <!-- Row 1: Portfolio Metrics & Quick Info -->
-                        <div class="dashboard-row-top">
-                            <div class="card total-portfolio-card">
-                                <div class="card-header-horizontal">
-                                    <span class="card-label">Total Portfolio Value</span>
-                                    <span class="pill-badge positive">+₹12,450.00 (1.45%)</span>
-                                </div>
-                                <div class="portfolio-value">₹24,82,190.54</div>
-                                <div class="metrics-row">
-                                    <div class="metric-col">
-                                        <span class="metric-label">1D RETURNS</span>
-                                        <span class="metric-value positive">+₹8,420</span>
-                                    </div>
-                                    <div class="metric-col">
-                                        <span class="metric-label">XIRR</span>
-                                        <span class="metric-value">18.4%</span>
-                                    </div>
-                                    <div class="metric-col">
-                                        <span class="metric-label">TOTAL PROFIT</span>
-                                        <span class="metric-value">₹4,12,040</span>
-                                    </div>
-                                </div>
-                                <div class="buttons-row">
-                                    <button class="btn btn-primary" id="btn-invest-more">
-                                        <span class="btn-icon">+</span> Invest More
-                                    </button>
-                                    <button class="btn btn-secondary">Withdraw</button>
-                                </div>
-                            </div>
-                            
-                            <div class="right-quick-cards">
-                                <div class="card quick-card available-invest-card">
-                                    <span class="card-label">Available to Invest</span>
-                                    <div class="quick-value">₹45,000.00</div>
-                                    <a href="#" class="action-link" id="add-money-trigger">Add Money →</a>
-                                </div>
-                                <div class="card quick-card recent-sip-card">
-                                    <span class="card-label">Recent SIP Status</span>
-                                    <div class="sip-status-row">
-                                        <span class="status-dot active"></span>
-                                        <span class="sip-fund-name">SBI Bluechip Fund</span>
-                                    </div>
-                                    <span class="sip-subtext">Next payment: 12th Oct • ₹5,000</span>
-                                </div>
-                            </div>
+                    <div class="example-section">
+                        <h3>Try asking one of these questions:</h3>
+                        <div class="example-chips">
+                            <button class="chip" data-query="Who is the fund manager of SBI Bluechip Fund and what is their tenure?">
+                                👤 Who is the fund manager of SBI Bluechip Fund?
+                            </button>
+                            <button class="chip" data-query="What is the exit load and expense ratio of the SBI Small Cap Fund?">
+                                💰 What is the exit load of SBI Small Cap?
+                            </button>
+                            <button class="chip" data-query="Is SBI Contra Fund a good investment for me?">
+                                📈 Should I invest in SBI Contra Fund?
+                            </button>
                         </div>
-
-                        <!-- Row 2: Market Trends chart -->
-                        <div class="card market-trends-card">
-                            <div class="trends-header">
-                                <div class="trends-title-group">
-                                    <h2 class="card-title">Market Trends</h2>
-                                    <div class="trends-tabs">
-                                        <button class="trend-tab active">NIFTY 50</button>
-                                        <button class="trend-tab">SENSEX</button>
-                                    </div>
-                                </div>
-                                <div class="period-tabs">
-                                    <button class="period-tab active">1D</button>
-                                    <button class="period-tab">5D</button>
-                                    <button class="period-tab">1M</button>
-                                    <button class="period-tab">1Y</button>
-                                </div>
-                            </div>
-                            
-                            <div class="trends-data-row">
-                                <div class="trends-price">25,127.95</div>
-                                <div class="trends-change positive">+152.40 (0.61%)</div>
-                            </div>
-                            
-                            <!-- Custom CSS Bar Chart -->
-                            <div class="chart-container">
-                                <div class="chart-bar" style="height: 38%;"></div>
-                                <div class="chart-bar" style="height: 45%;"></div>
-                                <div class="chart-bar" style="height: 42%;"></div>
-                                <div class="chart-bar" style="height: 55%;"></div>
-                                <div class="chart-bar" style="height: 48%;"></div>
-                                <div class="chart-bar" style="height: 65%;"></div>
-                                <div class="chart-bar" style="height: 60%;"></div>
-                                <div class="chart-bar" style="height: 72%;"></div>
-                                <div class="chart-bar" style="height: 70%;"></div>
-                                <div class="chart-bar" style="height: 85%;"></div>
-                                <div class="chart-bar" style="height: 80%;"></div>
-                                <div class="chart-bar" style="height: 92%;"></div>
-                                
-                                <div class="chart-time-labels">
-                                    <span>09:15</span>
-                                    <span>11:00</span>
-                                    <span>13:00</span>
-                                    <span>15:30</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Row 3: Popular Mutual Funds & Top Gainers Stocks -->
-                        <div class="dashboard-row-lists">
-                            <!-- Popular Mutual Funds -->
-                            <div class="card list-card">
-                                <div class="list-header">
-                                    <h3 class="list-title">Popular Mutual Funds</h3>
-                                    <a href="#" class="view-all-link">View All</a>
-                                </div>
-                                <div class="list-items">
-                                    <!-- Embedded example chips directly as interactive list items -->
-                                    <div class="list-item clickable-fund chip" data-query="What is the exit load of Quant Small Cap Fund?">
-                                        <div class="item-info">
-                                            <div class="item-avatar blue-avatar">Q</div>
-                                            <div class="item-details">
-                                                <span class="item-name">Quant Small Cap Fund</span>
-                                                <span class="item-sub">Equity • Very High Risk</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-metric">
-                                            <span class="metric-val positive">54.2%</span>
-                                            <span class="metric-sub">3Y Returns</span>
-                                        </div>
-                                    </div>
-                                    <div class="list-item clickable-fund chip" data-query="What is the expense ratio and fund manager of SBI Bluechip Fund?">
-                                        <div class="item-info">
-                                            <div class="item-avatar green-avatar">S</div>
-                                            <div class="item-details">
-                                                <span class="item-name">SBI Bluechip Direct-G</span>
-                                                <span class="item-sub">Equity • Moderate Risk</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-metric">
-                                            <span class="metric-val positive">22.8%</span>
-                                            <span class="metric-sub">3Y Returns</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Top Gainers Stocks -->
-                            <div class="card list-card">
-                                <div class="list-header">
-                                    <h3 class="list-title">Top Gainers Stocks</h3>
-                                    <a href="#" class="view-all-link">View All</a>
-                                </div>
-                                <div class="list-items">
-                                    <div class="list-item clickable-stock chip" data-query="Is Reliance Industries stock a good investment?">
-                                        <div class="item-info">
-                                            <div class="item-avatar grey-avatar">REL</div>
-                                            <div class="item-details">
-                                                <span class="item-name">Reliance Industries</span>
-                                                <span class="item-sub">₹2,945.10 • Large Cap</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-metric">
-                                            <span class="metric-val positive">+4.12%</span>
-                                            <span class="metric-sub">Today</span>
-                                        </div>
-                                    </div>
-                                    <div class="list-item clickable-stock chip" data-query="Who is the fund manager of SBI Contra Fund?">
-                                        <div class="item-info">
-                                            <div class="item-avatar grey-avatar">TCS</div>
-                                            <div class="item-details">
-                                                <span class="item-name">TCS</span>
-                                                <span class="item-sub">₹4,210.45 • Large Cap</span>
-                                            </div>
-                                        </div>
-                                        <div class="item-metric">
-                                            <span class="metric-val positive">+3.85%</span>
-                                            <span class="metric-sub">Today</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                </section>
-            </div>
+                </div>
 
-            <!-- Offline Compliance Footer -->
-            <footer class="compliance-footer">
-                <span>🔒 Compliance Guard: Personal identifiers (PAN, Aadhaar, phone, OTPs) are filtered and never stored.</span>
+            </section>
+
+            <!-- Bottom Chat Controls Area (Original buttons/features styled in new design) -->
+            <footer class="chat-controls">
+                <form class="input-form" id="chat-form">
+                    <input 
+                        type="text" 
+                        id="user-input" 
+                        placeholder="Ask about expense ratios, exit loads, fund managers, statement downloads..." 
+                        autocomplete="off" 
+                        maxlength="500"
+                        required
+                    >
+                    <button type="submit" class="send-btn" id="send-button" aria-label="Send Message">
+                        <svg class="send-icon" viewBox="0 0 24 24">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                        </svg>
+                    </button>
+                </form>
+                <div class="compliance-footer">
+                    <span>🔒 Compliance Guard: Personal identifiers (PAN, Aadhaar, phone, OTPs) are filtered and never stored.</span>
+                </div>
             </footer>
+
         </main>
     </div>
 
