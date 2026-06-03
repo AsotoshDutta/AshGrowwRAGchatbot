@@ -113,6 +113,30 @@ body {
     font-weight: 700;
 }
 
+.back-btn {
+    background: none;
+    border: 1px solid var(--panel-border);
+    color: var(--text-primary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none; /* Hidden on welcome screen */
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0;
+    margin-right: 8px; /* space between back button and logo icon */
+}
+
+.back-btn:hover {
+    background-color: var(--card-hover);
+    border-color: var(--primary-color);
+    transform: translateX(-2px);
+}
+
 .header-sub {
     color: var(--text-secondary);
     font-weight: 400;
@@ -522,6 +546,9 @@ body {
         <!-- Sticky Top Disclaimer Banner -->
         <header class="app-header">
             <div class="logo-area">
+                <button class="back-btn" id="back-button-home" title="Back to Home" aria-label="Back to Home">
+                    <span>←</span>
+                </button>
                 <span class="logo-icon">▲</span>
                 <h1>Groww <span class="header-sub">FAQ Assistant</span></h1>
             </div>
@@ -598,6 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const welcomeCard = document.getElementById('welcome-card');
     const themeToggle = document.getElementById('theme-toggle');
     const sendButton = document.getElementById('send-button');
+    const backButton = document.getElementById('back-button-home');
 
     // 2. Light/Dark Theme Toggle
     themeToggle.addEventListener('click', () => {
@@ -631,6 +659,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 5. Back to Home Button Listener
+    if (backButton) {
+        backButton.addEventListener('click', () => {
+            // Restore welcome card
+            if (welcomeCard) {
+                welcomeCard.style.display = 'block';
+            }
+            // Clear message history
+            const wrappers = chatMessages.querySelectorAll('.message-wrapper');
+            wrappers.forEach(w => w.remove());
+            // Hide back button
+            backButton.style.display = 'none';
+        });
+    }
+
     // Helper to escape HTML to prevent XSS vulnerability
     function escapeHTML(text) {
         if (!text) return '';
@@ -647,6 +690,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide welcome card upon first message exchange
         if (welcomeCard) {
             welcomeCard.style.display = 'none';
+        }
+
+        // Show back button
+        if (backButton) {
+            backButton.style.display = 'flex';
         }
 
         const wrapper = document.createElement('div');
