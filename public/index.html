@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Groww FAQ Assistant - Factual Mutual Fund RAG</title>
-    <!-- Modern Premium Typography -->
+    <title>Mutual Fund FAQ Assistant - Facts-Only Q&A</title>
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,89 +12,26 @@
 </head>
 <body class="dark-theme">
     <div class="app-container">
-        
-        <!-- Left Sidebar Navigation -->
-        <aside class="sidebar">
+        <!-- Sticky Top Disclaimer Banner -->
+        <header class="app-header">
             <div class="logo-area">
-                <div class="logo-icon-container">
-                    <svg class="logo-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="24" height="24" rx="6" fill="#00D09C"/>
-                        <path d="M12 5L6 9.5V17.5H18V9.5L12 5ZM12 7.6L16.2 10.75V15.7H7.8V10.75L12 7.6ZM11 11.1H13V14.1H11V11.1Z" fill="#0C0D0E"/>
-                    </svg>
-                </div>
-                <div class="logo-text">
-                    <span class="logo-title">Groww</span>
-                    <span class="logo-subtitle">Wealth Partner</span>
-                </div>
+                <span class="logo-icon">▲</span>
+                <h1>Groww <span class="header-sub">FAQ Assistant</span></h1>
             </div>
-            
-            <nav class="nav-menu">
-                <a href="#" class="nav-item active" id="nav-explore">
-                    <span class="nav-icon">🔍</span> Explore
-                </a>
-                <a href="#" class="nav-item" id="nav-investments">
-                    <span class="nav-icon">🏛</span> Investments
-                </a>
-                <a href="#" class="nav-item" id="nav-stocks">
-                    <span class="nav-icon">📈</span> Stocks
-                </a>
-                <a href="#" class="nav-item" id="nav-mutual-funds">
-                    <span class="nav-icon">🗂</span> Mutual Funds
-                </a>
-                <a href="#" class="nav-item" id="nav-gold">
-                    <span class="nav-icon">🪙</span> Gold
-                </a>
-            </nav>
-            
-            <div class="sidebar-footer">
-                <a href="#" class="nav-item" id="nav-support">
-                    <span class="nav-icon">🎧</span> Support
-                </a>
-                <a href="#" class="nav-item" id="nav-help">
-                    <span class="nav-icon">❓</span> Help Center
-                </a>
+            <div class="disclaimer-badge" id="disclaimer-banner">
+                <span class="warning-icon">⚠</span>
+                <span class="disclaimer-text">Facts-only. No investment advice.</span>
             </div>
-        </aside>
+            <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+                <span class="theme-icon">☀</span>
+            </button>
+        </header>
 
         <!-- Main Workspace -->
-        <main class="main-content">
-            
-            <!-- Top Navigation Header -->
-            <header class="top-nav">
-                <div class="page-title-area">
-                    <button class="back-btn" id="back-button-home" title="Back to Welcome Page" aria-label="Back to Welcome Page">
-                        <span>←</span>
-                    </button>
-                    <span class="page-title">Explore / FAQ Assistant</span>
-                </div>
-                
-                <div class="header-actions">
-                    <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
-                        <span class="theme-icon">☀</span>
-                    </button>
-                    <button class="header-icon-btn" title="Notifications">
-                        <span class="action-icon">🔔</span>
-                    </button>
-                    <button class="header-icon-btn" title="Wallet">
-                        <span class="action-icon">💼</span>
-                    </button>
-                    <div class="profile-avatar">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=80&h=80" alt="Profile" class="avatar-img">
-                        <span class="active-status"></span>
-                    </div>
-                </div>
-            </header>
-
-            <!-- Sticky Disclaimer Banner -->
-            <div class="disclaimer-banner" id="disclaimer-banner">
-                <span class="warning-icon">⚠</span>
-                <span class="disclaimer-text">Facts-only. No investment advice. Financial markets are subject to risk.</span>
-            </div>
-
-            <!-- Chat workspace -->
+        <main class="chat-workspace">
+            <!-- Chat Logs Container -->
             <section class="chat-messages-container" id="chat-messages">
-                
-                <!-- Welcome Card (Original welcome content, styled in new theme) -->
+                <!-- Welcome Card -->
                 <div class="welcome-card" id="welcome-card">
                     <div class="welcome-avatar">💬</div>
                     <h2>Welcome to the Mutual Fund FAQ Assistant</h2>
@@ -115,10 +52,9 @@
                         </div>
                     </div>
                 </div>
-
             </section>
 
-            <!-- Bottom Chat Controls Area (Original buttons/features styled in new design) -->
+            <!-- Input Controls Area -->
             <footer class="chat-controls">
                 <form class="input-form" id="chat-form">
                     <input 
@@ -139,7 +75,6 @@
                     <span>🔒 Compliance Guard: Personal identifiers (PAN, Aadhaar, phone, OTPs) are filtered and never stored.</span>
                 </div>
             </footer>
-
         </main>
     </div>
 

@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const welcomeCard = document.getElementById('welcome-card');
     const themeToggle = document.getElementById('theme-toggle');
     const sendButton = document.getElementById('send-button');
-    const backButton = document.getElementById('back-button-home');
 
     // 2. Light/Dark Theme Toggle
     themeToggle.addEventListener('click', () => {
@@ -44,21 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 5. Back to Home Button Listener
-    if (backButton) {
-        backButton.addEventListener('click', () => {
-            // Restore welcome card
-            if (welcomeCard) {
-                welcomeCard.style.display = 'block';
-            }
-            // Clear message history
-            const wrappers = chatMessages.querySelectorAll('.message-wrapper');
-            wrappers.forEach(w => w.remove());
-            // Hide back button
-            backButton.style.display = 'none';
-        });
-    }
-
     // Helper to escape HTML to prevent XSS vulnerability
     function escapeHTML(text) {
         if (!text) return '';
@@ -75,11 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide welcome card upon first message exchange
         if (welcomeCard) {
             welcomeCard.style.display = 'none';
-        }
-
-        // Show back button
-        if (backButton) {
-            backButton.style.display = 'flex';
         }
 
         const wrapper = document.createElement('div');
