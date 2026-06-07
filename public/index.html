@@ -25,10 +25,43 @@
                 <span class="warning-icon">⚠</span>
                 <span class="disclaimer-text">Facts-only. No investment advice.</span>
             </div>
-            <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
-                <span class="theme-icon">☀</span>
-            </button>
+            <div class="header-buttons">
+                <button class="settings-toggle-btn" id="settings-toggle" title="API Settings">
+                    <span class="settings-icon">⚙</span>
+                </button>
+                <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Light/Dark Theme">
+                    <span class="theme-icon">☀</span>
+                </button>
+            </div>
         </header>
+
+        <!-- Collapsible settings panel -->
+        <div class="settings-panel" id="settings-panel" style="display: none;">
+            <div class="settings-header">
+                <h3>⚙ API Configuration</h3>
+                <button class="close-settings-btn" id="close-settings" title="Close Settings">&times;</button>
+            </div>
+            <div class="settings-body">
+                <div class="input-group">
+                    <label for="custom-api-key">Custom Gemini API Key</label>
+                    <div class="input-row">
+                        <input type="password" id="custom-api-key" placeholder="Enter your custom Gemini API Key (AIzaSy...)">
+                        <button class="settings-btn" id="save-api-key">Save</button>
+                        <button class="settings-btn secondary" id="clear-api-key">Clear</button>
+                    </div>
+                    <span class="api-status-text" id="api-status-text">Using default server API key.</span>
+                </div>
+                <div class="api-requirements">
+                    <h4>Requirements & Guidelines:</h4>
+                    <ul>
+                        <li>Must be a valid API Key generated in your <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer">Google AI Studio</a>.</li>
+                        <li>Must have active access to the <code>gemini-3.5-flash</code> model and the <code>gemini-embedding-001</code> model.</li>
+                        <li>Check that you have free-tier quota remaining or pay-as-you-go enabled on your Google Cloud project.</li>
+                        <li>Stored locally and securely in your browser's <code>localStorage</code> (never sent to our database or third-party servers).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         <!-- Main Workspace -->
         <main class="chat-workspace">

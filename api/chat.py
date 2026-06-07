@@ -106,9 +106,10 @@ def chat():
             "isRefusal": True
         }), 200
 
-    api_key = os.environ.get('GEMINI_API_KEY')
+    custom_api_key = data.get('customApiKey', '').strip()
+    api_key = custom_api_key if custom_api_key else os.environ.get('GEMINI_API_KEY')
     if not api_key:
-        return jsonify({"error": "GEMINI_API_KEY environment variable is missing."}), 500
+        return jsonify({"error": "API Key is missing. Please configure GEMINI_API_KEY in your environment or supply a custom Gemini API Key in the settings."}), 400
 
     # Configure Gemini
     genai.configure(api_key=api_key)

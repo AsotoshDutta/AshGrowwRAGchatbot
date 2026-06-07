@@ -11,6 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const sendButton = document.getElementById('send-button');
     const backButton = document.getElementById('back-button-home');
+    const settingsToggle = document.getElementById('settings-toggle');
+    const settingsPanel = document.getElementById('settings-panel');
+    const closeSettings = document.getElementById('close-settings');
+    const customApiKeyInput = document.getElementById('custom-api-key');
+    const saveApiKeyBtn = document.getElementById('save-api-key');
+    const clearApiKeyBtn = document.getElementById('clear-api-key');
+    const apiStatusText = document.getElementById('api-status-text');
 
     // 2. Light/Dark Theme Toggle
     themeToggle.addEventListener('click', () => {
@@ -57,6 +64,62 @@ document.addEventListener('DOMContentLoaded', () => {
             // Hide back button
             backButton.style.display = 'none';
         });
+    }
+
+    // 6. Settings Panel Toggle & Input Handling
+    if (settingsToggle && settingsPanel) {
+        settingsToggle.addEventListener('click', () => {
+            const isHidden = settingsPanel.style.display === 'none';
+            settingsPanel.style.display = isHidden ? 'flex' : 'none';
+        });
+    }
+    if (closeSettings && settingsPanel) {
+        closeSettings.addEventListener('click', () => {
+            settingsPanel.style.display = 'none';
+        });
+    }
+
+    // Load saved custom key on page load
+    const savedKey = localStorage.getItem('custom_gemini_api_key') || '';
+    if (customApiKeyInput) {
+        customApiKeyInput.value = savedKey;
+    }
+    updateApiStatus(savedKey);
+
+    // Save custom key
+    if (saveApiKeyBtn && customApiKeyInput) {
+        saveApiKeyBtn.addEventListener('click', () => {
+            const key = customApiKeyInput.value.trim();
+            if (key) {
+                localStorage.setItem('custom_gemini_api_key', key);
+                updateApiStatus(key);
+                alert('Custom Gemini API Key saved successfully!');
+                if (settingsPanel) settingsPanel.style.display = 'none';
+            } else {
+                alert('Please enter a valid API Key first.');
+            }
+        });
+    }
+
+    // Clear custom key
+    if (clearApiKeyBtn && customApiKeyInput) {
+        clearApiKeyBtn.addEventListener('click', () => {
+            localStorage.removeItem('custom_gemini_api_key');
+            customApiKeyInput.value = '';
+            updateApiStatus('');
+            alert('Custom Gemini API Key removed. Now using default server API key.');
+        });
+    }
+
+    function updateApiStatus(key) {
+        if (!apiStatusText) return;
+        if (key) {
+            apiStatusText.textContent = 'Using custom Gemini API key stored in browser.';
+            apiStatusText.classList.add('active-key');
+        } else {
+            apiStatusText.textContent = 'Using default server API key.';
+            apiStatusText.classList.remove('active-key');
+        }
     }
 
     // Helper to escape HTML to prevent XSS vulnerability
@@ -189,12 +252,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const loaderBubble = appendLoading();
 
         try {
+            const customApiKey = localStorage.getItem('custom_gemini_api_key') || '';
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ query: queryText })
+                body: JSON.stringify({ 
+                    query: queryText,
+                    customApiKey: customApiKey
+                })
             });
 
             // Remove loading bubble
